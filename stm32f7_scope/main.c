@@ -96,8 +96,8 @@ void drawWaveform(void){
 	else
 		gPutString(5,5,"Trig: L",courier13_ext,13,COLOR_BLACK,COLOR_WHITE);
 	for(i=0;i<480;i++){
-		gDrawLine(i, WAVE_POS-dinL[i+trigPos]*MAX_AMP/32768.0, i+1, WAVE_POS-dinL[i+1+trigPos]*MAX_AMP/32768.0, COLOR_RED);
-		gDrawLine(i, WAVE_POS-dinR[i+trigPos]*MAX_AMP/32768.0, i+1, WAVE_POS-dinR[i+1+trigPos]*MAX_AMP/32768.0, COLOR_BLUE);
+		gDrawLine(i, WAVE_POS-dinL[i+trigPos]*MAX_AMP/32768.0f, i+1, WAVE_POS-dinL[i+1+trigPos]*MAX_AMP/32768.0f, COLOR_RED);
+		gDrawLine(i, WAVE_POS-dinR[i+trigPos]*MAX_AMP/32768.0f, i+1, WAVE_POS-dinR[i+1+trigPos]*MAX_AMP/32768.0f, COLOR_BLUE);
 	}
 }
 
