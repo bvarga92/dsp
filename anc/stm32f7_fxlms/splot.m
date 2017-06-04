@@ -1,6 +1,6 @@
 % Egy identifikacios eredmeny abrazolasa ido- es frekvenciatartomanyban.
 % Az S vektor valos meres eredmenye, az egyutthatok debugger segitsegevel
-%lettek kiolvasva a mikrokontroller memoriajabol.
+% lettek kiolvasva a mikrokontroller memoriajabol.
 
 clear all;
 clc;
