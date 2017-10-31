@@ -1,15 +1,17 @@
 clear all;
 clc;
-%-------------------- BEMENET, PARAMETEREK --------------------%
-fs=48000; %mintaveteli frekvencia (Hz)
-f0=480; %a jel nevleges frekvenciaja (kezdeti becsles)
-fe=30; %frekvenciahiba
-t=0:1/fs:0.1; %idovektor (s)
+
+%% BEMENET, PARAMETEREK
+fs=48000;              %mintaveteli frekvencia (Hz)
+f0=480;                %a jel nevleges frekvenciaja (kezdeti becsles)
+fe=30;                 %frekvenciahiba
+t=0:1/fs:0.1;          %idovektor (s)
 u=cos(2*pi*(f0+fe)*t); %bemeno jel (tiszta szinusz)
-N=2; %megfigyelt harmonikusok szama
-alpha_obs=0.005/N; %megfigyelo batorsagi tenyezoje
-alpha_afa=50; %AFA batorsagi tenyezoje
-%-------------------------- SZAMITAS --------------------------%
+N=2;                   %megfigyelt harmonikusok szama
+alpha_obs=0.005/N;     %megfigyelo batorsagi tenyezoje
+alpha_afa=50;          %AFA batorsagi tenyezoje
+
+%% SZAMITAS
 y=zeros(size(t)); %jel becsloje
 x=zeros(N+1,1); %Fourier-egyutthatok
 e=zeros(size(t)); %hibajel
@@ -23,7 +25,8 @@ for ii=1:length(t)
     x=x+alpha_obs*e(ii)*c';
     f=f+alpha_afa*wrapToPi(angle(x(2)/xSave(2,ii)));
 end
-%------------------------- ABRAZOLAS --------------------------%
+
+%% ABRAZOLAS
 disp(sprintf('Nevleges: %.2f Hz\nMert:     %.2f Hz\nValos:    %.2f Hz',f0,f,f0+fe));
 
 figure(1);

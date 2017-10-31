@@ -1,16 +1,18 @@
 clear all;
 clc;
-%-------------------- BEMENET, PARAMETEREK --------------------%
+
+%% BEMENET, PARAMETEREK
 sum_on_input=0; %0: beavatkozas a kimeneten, 1: beavatkozas a bemeneten
-fs=48000; %mintaveteli frekvencia (Hz)
-t=0:1/fs:0.05; %idotengely (s)
-f0=1600; %alapharmonikus frekvenciaja (Hz)
+fs=48000;       %mintaveteli frekvencia (Hz)
+t=0:1/fs:0.05;  %idotengely (s)
+f0=1600;        %alapharmonikus frekvenciaja (Hz)
 in=0.8*cos(2*pi*f0*t+60/180*pi); %bemenet (tiszta szinusz)
-N=15; %megfigyelendo harmonikusok szama (0=DC)
-alpha=0.5/N; %az egyes rezonatorcsatornak erositesei
+N=15;           %megfigyelendo harmonikusok szama (0=DC)
+alpha=0.5/N;    %az egyes rezonatorcsatornak erositesei
 beta=0.01./exp(-j*2*pi*(0:N)'*f0/fs); %erositesek a szabalyzo csatornaiban
-transfer=@(x)(atan(x*4)); %a nemlinearis rendszer karakterisztikaja
-%-------------------------- SZAMITAS --------------------------%
+transfer=@(x)(atan(x*4));             %a nemlinearis rendszer karakterisztikaja
+
+%% SZAMITAS
 if(sum_on_input)
     disp('Beavatkozas a bemeneten.');
 else
@@ -39,7 +41,8 @@ for ii=1:length(t)
         p(2)=0; %az alapharmonikust nem szabalyozzuk nullara
     end
 end
-%------------------------- ABRAZOLAS --------------------------%
+
+%% ABRAZOLAS
 figure(1)
 subplot(121);
 plot(-2:0.01:2,transfer(-2:0.01:2));

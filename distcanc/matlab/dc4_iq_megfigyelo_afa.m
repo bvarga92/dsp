@@ -6,23 +6,25 @@
 
 clear all;
 clc;
-%-------------------- BEMENET, PARAMETEREK --------------------%
-fs=4800; %mintaveteli frekvencia
-f_am=1000; %modulalojel frekvenciaja
-f_dc=10; %frekvenciahiba (ez van DC helyett)
-M=48000; %mintaszam
+
+%% BEMENET, PARAMETEREK
+fs=4800;      %mintaveteli frekvencia
+f_am=1000;    %modulalojel frekvenciaja
+f_dc=10;      %frekvenciahiba (ez van DC helyett)
+M=48000;      %mintaszam
 t=(0:M-1)/fs; %idovektor (s)
 u=2*exp(1j*1)*exp(1j*2*pi*(-f_am+f_dc)*t)+... %egyik oldalsav
   3*exp(1j*0)*exp(1j*2*pi*(0+f_dc)*t)+... %vivo (nevlegesen DC)
   2*exp(-1j*1)*exp(1j*2*pi*(f_am+f_dc)*t); %masik oldalsav
 alpha_obs=0.001; %megfigyelo batorsagi tenyezoje
-alpha_afa=1; %AFA batorsagi tenyezoje
-%-------------------------- SZAMITAS --------------------------%
+alpha_afa=1;     %AFA batorsagi tenyezoje
+
+%% SZAMITAS
 y=zeros(size(t)); %a jel becsloje
-x=zeros(3,1); %itt szeretnenk eloallitani a Fourier-egyutthatokat
+x=zeros(3,1);     %itt szeretnenk eloallitani a Fourier-egyutthatokat
 xSave=zeros(3,M);
 f=[-f_am 0 f_am]; %a csatornak frekvenciait a nevlegesre inicializaljuk
-df=zeros(M+1,1); %frekvenciahiba
+df=zeros(M+1,1);  %frekvenciahiba
 for ii=1:M
     c=exp(1j*2*pi*(f+df(ii))*t(ii));
     y(ii)=c*x;
@@ -31,7 +33,8 @@ for ii=1:M
     x=x+alpha_obs*e*c';
     df(ii+1)=df(ii)+alpha_afa*wrapToPi(angle(x(2)/xSave(2,ii)));
 end
-%------------------------- ABRAZOLAS --------------------------%
+
+%% ABRAZOLAS
 fprintf('Frekvenciahiba: df= %.3f Hz\nA megfigyelt egyutthatok:\n',df(end));
 for ii=1:3
     fprintf('\tx%d= %.1f*exp(%.1f*j)\n',ii,abs(x(ii,end)),wrapToPi(angle(x(ii,end))));
