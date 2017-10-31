@@ -4,11 +4,11 @@ clc;
 %% PARAMETEREK
 fs=10e6;                  %mintaveteli frekvencia a szimulaciohoz
 f_rf=110e3;               %bemeno RF jel frekvenciaja
-p_rf=rand*2*pi;           %bemeni RF jel kezdofazisa
+p_rf=rand*2*pi;           %bemeno RF jel kezdofazisa
 f_lo=100e3;               %lokaljelek frekvenciaja
 T=2e-3;                   %szimulacios ido
 alpha=1e-2;               %megfigyelo batorsagi tenyezoje
-beta=1e-3;                %szabalyzo batorsagi tenyezoje (gyakorlatban kompenzalando az identifikalt atvitellel)
+beta=1e-3;                %szabalyzo batorsagi tenyezoje (a valosagban kompenzalando az identifikalt atvitellel)
 [B,A]=ellip(6,1,60,0.01); %ADC alulatereszto szuroje
 %[H,W]=freqz(B,A,10000); plot(W/2/pi*fs,20*log10(abs(H)));
 
@@ -20,7 +20,7 @@ lo_q=sin(2*pi*f_lo*t);       %Q lokaljel
 in_i=zeros(1,length(t));     %DSP egyik bemeno jele (rekurzivan all elo)
 in_q=zeros(1,length(t));     %DSP masik bemeno jele (rekurzivan all elo)
 
-%% A KOMPLEX JEL NULLARA SZABALYZASA
+%% A KOMPLEX JEL NULLARA SZABALYZASA (a valosagban ez persze nem 10 MHz mintaveteli frekvenciaval tortenik)
 rf_out=size(t);
 buf1=zeros(2,length(B));
 buf2=zeros(2,length(A)-1);
