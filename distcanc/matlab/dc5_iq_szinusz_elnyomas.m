@@ -31,15 +31,15 @@ e=0;
 xSave=zeros(size(t));
 eSave=zeros(size(t));
 for ii=1:length(t)
-    rf_out(ii)=real(r)*lo_i(ii)+imag(r)*lo_q(ii);
+    rf_out(ii)=real(r)*lo_i(ii)-imag(r)*lo_q(ii);
     %DSP bemeno jeleinek eloallitasa (a valosagban ez "megtortenik", nem kell szamitani)
     buf1=[(rf_in(ii)-rf_out(ii)).*lo_i(ii) buf1(1,1:end-1) ; (rf_in(ii)-rf_out(ii)).*lo_q(ii) buf1(2,1:end-1)];
     in_i(ii)=1/A(1)*(B*buf1(1,:)'-A(2:end)*buf2(1,:)');
     in_q(ii)=1/A(1)*(B*buf1(2,:)'-A(2:end)*buf2(2,:)');
     buf2=[in_i(ii) buf2(1,1:end-1) ; in_q(ii) buf2(2,1:end-1)];
     %megfigyelo es szabalyzo
-    in_cpx=in_i(ii)+1j*in_q(ii);
-    c=exp(1j*2*pi*(f_lo-f_rf)/fs*(ii-1));
+    in_cpx=in_i(ii)-1j*in_q(ii);
+    c=exp(1j*2*pi*(f_rf-f_lo)/fs*(ii-1));
     y=c*x;
     r=c*p;
     xSave(ii)=x;
