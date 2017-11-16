@@ -3,6 +3,7 @@
 - **adaptive**: adaptív szűrőalgoritmusok (LMS, NLMS, FxLMS) szimulációja MATLAB-ban
 - **anc**: aktív zajcsökkentéssel (Active Noise Control) kapcsolatos anyagok
 - **distcanc**: aktív torzításcsökkentés jelfeldolgozó processzorral megvalósított szabályozási kör segítségével
+- **efm32_iir**: jelfeldolgozás EFM32GG-STK3700 fejlesztőkártyán (elsőfokú IIR szűrő)
 - **ekg**: EKG jel feldolgozása, QRS komplexek detektálása Pan-Tompkins-algoritmussal
 - **gpu_fir_cuda**: FIR szűrés megvalósítása GPU-gyorsított konvolúcióval (CUDA)
 - **gpu_fir_opencl**: FIR szűrés megvalósítása GPU-gyorsított konvolúcióval (OpenCL)
