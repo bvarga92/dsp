@@ -72,10 +72,20 @@ hold off;
 legend('eredeti','linearis','Lagrange','LS','Fourier','Hermite','spline');
 pause;
 
+%% CATMULL-ROM-SPLINE
+K=20;
+x2=linspace(x(1),x(end),N*K);
+yi_spline_cr=interpolate_spline_cr(y,x,x2);
+hold on;
+plot(linspace(0,1,length(yi_spline_cr)),yi_spline_cr,'k','LineWidth',2);
+hold off;
+legend('eredeti','linearis','Lagrange','LS','Fourier','Hermite','spline','C-R-spline');
+pause;
+
 %% INTERPOLACIO NULLAK BESZURASAVAL ES ALULATERESZTO SZURESSEL
 K=20;
 yi_lpf=interpolate_lpf(y,K);
 hold on;
-plot(linspace(0,1,length(yi_lpf)),yi_lpf,'k','LineWidth',2);
+plot(linspace(0,1,length(yi_lpf)),yi_lpf,'color',[0.5 0.5 0.5],'LineWidth',2);
 hold off;
-legend('eredeti','linearis','Lagrange','LS','Fourier','Hermite','spline','LPF');
+legend('eredeti','linearis','Lagrange','LS','Fourier','Hermite','spline','C-R-spline','LPF');
