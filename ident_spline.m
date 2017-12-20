@@ -10,13 +10,13 @@ N=1000;            % szimulacio hossza
 mu=0.1;            % LMS algoritmus batorsagi tenyezoje
 s=xmin+(xmax-xmin)*rand(1,N); % gerjesztes
 
-%% IDENTIFIKACIO
+%% CATMULL-ROM-SPLINE ILLESZTESE LMS ALGORITMUSSAL
 M=[0 1 0 0;-0.5 0 0.5 0;1 -2.5 2 -0.5;-0.5 1.5 -1.5 0.5];
 x=linspace(xmin,xmax,P);
 q=zeros(P,1); % a kontrollpontok vektora
 for ii=1:N
     idx=sum(s(ii)>=x); % az aktualis bemenetet megelozo kontrollpont indexe
-	if idx==1 || idx>=P-1; continue; end;
+    if idx==1 || idx>=P-1; continue; end;
     t=(s(ii)-x(idx))/(x(idx+1)-x(idx)); % az intervallum hanyadreszenel van a bemeneti adat
     u=[1 t t^2 t^3];
     e(ii)=f(s(ii))-u*M*q((idx-1):(idx+2)); % hibajel
