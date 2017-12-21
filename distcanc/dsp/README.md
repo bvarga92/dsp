@@ -12,3 +12,5 @@
 ![2](https://raw.githubusercontent.com/bvarga92/dsp/main/distcanc/dsp/setup2.jpg)
 
 ![3](https://raw.githubusercontent.com/bvarga92/dsp/main/distcanc/dsp/setup3.jpg)
+
+![4](https://raw.githubusercontent.com/bvarga92/dsp/main/distcanc/dsp/setup4.png)
