@@ -19,6 +19,8 @@
 - **fft.c**: gyors Fourier-transzformáció nonrekurzív implementációja C nyelven + Blackman-ablak
 - **fft_windowing.m** és **fft_windowing.ipynb**: szimulációk a nem koherens mintavételezés és az ablakozás hatásáról
 - **filters.m**: IIR és FIR szűrőapproximációk összehasonlítása (Butterworth, Csebisev, inverz Csebisev, elliptikus, frekvenciamintavételezés, Remez-algoritmus)
-- **ident_spline**: statikus nemlinearitás adaptív identifikációja (Catmull-Rom-spline illesztése LMS algoritmussal)
+- **ident_spline.m**: statikus nemlinearitás adaptív identifikációja (Catmull-Rom-spline illesztése LMS algoritmussal)
+- **kalman.m**: megfigyelési zaj kiszűrése Kalman-szűrővel
+- **kalman_fusion.m**: szenzorfúzió Kalman-szűrővel
 - **ola.m**: hosszú jel FIR szűrése a frekvenciatartományban Overlap & Add algoritmussal
 - **remezfir.m**: a Remez-módszer manuális implementációja aluláteresző FIR szűrő tervezésére (Parks-McClellan-algoritmus)
