@@ -16,7 +16,7 @@ beta=1e-3;                %szabalyzo batorsagi tenyezoje (a valosagban kompenzal
 t=0:1/fs:T;
 rf_in=sin(2*pi*f_rf*t+p_rf); %RF bemenet
 lo_i=cos(2*pi*f_lo*t);       %I lokaljel
-lo_q=sin(2*pi*f_lo*t);       %Q lokaljel
+lo_q=-sin(2*pi*f_lo*t);      %Q lokaljel
 in_i=zeros(1,length(t));     %DSP egyik bemeno jele (rekurzivan all elo)
 in_q=zeros(1,length(t));     %DSP masik bemeno jele (rekurzivan all elo)
 
@@ -31,14 +31,14 @@ e=0;
 xSave=zeros(size(t));
 eSave=zeros(size(t));
 for ii=1:length(t)
-    rf_out(ii)=real(r)*lo_i(ii)-imag(r)*lo_q(ii);
+    rf_out(ii)=real(r)*lo_i(ii)+imag(r)*lo_q(ii);
     %DSP bemeno jeleinek eloallitasa (a valosagban ez "megtortenik", nem kell szamitani)
     buf1=[(rf_in(ii)-rf_out(ii)).*lo_i(ii) buf1(1,1:end-1) ; (rf_in(ii)-rf_out(ii)).*lo_q(ii) buf1(2,1:end-1)];
     in_i(ii)=1/A(1)*(B*buf1(1,:)'-A(2:end)*buf2(1,:)');
     in_q(ii)=1/A(1)*(B*buf1(2,:)'-A(2:end)*buf2(2,:)');
     buf2=[in_i(ii) buf2(1,1:end-1) ; in_q(ii) buf2(2,1:end-1)];
     %megfigyelo es szabalyzo
-    in_cpx=in_i(ii)-1j*in_q(ii);
+    in_cpx=in_i(ii)+1j*in_q(ii);
     c=exp(1j*2*pi*(f_rf-f_lo)/fs*(ii-1));
     y=c*x;
     r=c*p;
@@ -52,19 +52,19 @@ end
 %% ABRAZOLAS
 figure(1);
 subplot(221);
-plot(t,rf_in,t,rf_out);
+plot(1000*t,rf_in,1000*t,rf_out);
 title('RF bemenet es a beavatkozojel');
 legend('RF_{in}','RF_{out}');
-xlabel('t');
+xlabel('t [ms]');
 ylabel('RF_{in}, RF_{out}');
 subplot(223);
-plot(t,in_i,t,in_q);
+plot(1000*t,in_i,1000*t,in_q);
 title('ADC bemenete');
 legend('in_I','in_Q');
-xlabel('t');
+xlabel('t [ms]');
 ylabel('in_I, in_Q');
 subplot(122);
-plot(t,abs(xSave));
+plot(1000*t,abs(xSave));
 title('Megfigyelt amplitudo');
-xlabel('t');
+xlabel('t [ms]');
 ylabel('x_1');
