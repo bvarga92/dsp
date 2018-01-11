@@ -24,3 +24,4 @@
 - **kalman_fusion.m**: szenzorfúzió Kalman-szűrővel
 - **ola.m**: hosszú jel FIR szűrése a frekvenciatartományban Overlap & Add algoritmussal
 - **remezfir.m**: a Remez-módszer manuális implementációja aluláteresző FIR szűrő tervezésére (Parks-McClellan-algoritmus)
+- **wavelet_processing.m**: wavelet alapú feature extraction
