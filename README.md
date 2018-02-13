@@ -22,6 +22,7 @@
 - **ident_spline.m**: statikus nemlinearitás adaptív identifikációja (Catmull-Rom-spline illesztése LMS algoritmussal)
 - **kalman.m**: megfigyelési zaj kiszűrése Kalman-szűrővel
 - **kalman_fusion.m**: szenzorfúzió Kalman-szűrővel
+- **meda.m**: periodikus zavarjel detektálása Minimum Entropy Deconvolution algoritmussal
 - **ola.m**: hosszú jel FIR szűrése a frekvenciatartományban Overlap & Add algoritmussal
 - **remezfir.m**: a Remez-módszer manuális implementációja aluláteresző FIR szűrő tervezésére (Parks-McClellan-algoritmus)
 - **spectral_kurtosis.m**: spektrális kurtózis számítása és alkalmazása jelkomponensek detektálására

@@ -28,9 +28,9 @@ NPKI=0;
 RR(1:5)=RRlim;
 for ii=1:length(peaks)
     RRavg=mean(RR);
-    THRI=3/4*NPKI+1/4*SPKI;
+    THRI(ii)=3/4*NPKI+1/4*SPKI;
     rr=(peaks(ii)-qrs(end))/fs;
-    if (y(peaks(ii))>THRI) || (y(peaks(ii))>THRI/2 && rr>max(1.5*RRavg,RRlim))
+    if (y(peaks(ii))>THRI(ii)) || (y(peaks(ii))>THRI(ii)/2 && rr>max(1.5*RRavg,RRlim))
         if rr<RRlim
             d=diff(y(qrs(end):peaks(ii)));
             if max(d)<-0.8*min(d)
@@ -39,7 +39,7 @@ for ii=1:length(peaks)
             end
         end
         qrs=[qrs peaks(ii)];
-        if(y(peaks(ii))>THRI)
+        if(y(peaks(ii))>THRI(ii))
             SPKI=7/8*SPKI+1/8*y(peaks(ii));
         else
             SPKI=3/4*SPKI+1/4*y(peaks(ii));
@@ -66,6 +66,7 @@ fprintf('A talalt QRS komplexek szama %u.\n\n',length(qrs));
 plot((0:N-1)/fs,data);
 hold on;
 plot((qrs-1)/fs,data(qrs),'ro','MarkerFaceColor','r');
+plot(linspace(0,(N-1)/fs,length(THRI)),THRI,'k','LineWidth',2);
 hold off;
 xlabel('t [s]');
 title('A megtalalt QRS komplexek');
