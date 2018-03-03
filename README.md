@@ -16,6 +16,7 @@
 - **sharc_reverb**: visszacsatolt késleltetőhálózaton alapuló zengető effekt ADSP-21364 jelfeldolgozó processzorral ([videó](https://www.youtube.com/watch?v=-eSbS0YqtKs&list=PL9_VlVdB8s882QMHiqJlDpJeKWxwP5CIG))
 - **stm32f746_scope**: audio bemenet és a spektrum megjelenítése az STM32F746-Discovery kártyán ([videó](https://www.youtube.com/watch?v=P65fDKEUeow&list=PL9_VlVdB8s882QMHiqJlDpJeKWxwP5CIG))
 - **butterworth.m**: IIR sávszűrő manuális tervezése Butterworth-approximációval
+- **emd.m**: Empirical Mode Decomposition
 - **fft.c**: gyors Fourier-transzformáció nonrekurzív implementációja C nyelven + Blackman-ablak
 - **fft_windowing.m** és **fft_windowing.ipynb**: szimulációk a nem koherens mintavételezés és az ablakozás hatásáról
 - **filters.m**: IIR és FIR szűrőapproximációk összehasonlítása (Butterworth, Csebisev, inverz Csebisev, elliptikus, frekvenciamintavételezés, Remez-algoritmus)
