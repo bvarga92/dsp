@@ -4,7 +4,7 @@ clear all;
 %% PARAMETEREK
 fs=64000;                %mintaveteli frekvencia
 Tsim=0.05;               %szimulacios ido
-[A,B,C,D]=butter(5,0.1); %megfigylet rendszer allapotvaltozos leirasa
+[A,B,C,D]=butter(5,0.1); %megfigyelt rendszer allapotvaltozos leirasa
 Q=0.0001;                %folyamatzaj varianciaja
 R=0.1;                   %meresi zaj varianciaja
 
