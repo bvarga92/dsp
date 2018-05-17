@@ -17,6 +17,7 @@
 - **stm32f746_scope**: audio bemenet és a spektrum megjelenítése az STM32F746-Discovery kártyán ([videó](https://www.youtube.com/watch?v=P65fDKEUeow&list=PL9_VlVdB8s882QMHiqJlDpJeKWxwP5CIG))
 - **trigger**: tranziens jel detektálása nagyon kis jel/zaj viszony mellett (Simulink modell)
 - **butterworth.m**: IIR sávszűrő manuális tervezése Butterworth-approximációval
+- **dct_compression.m**: diszkrét koszinusz transzformáción alapuló jeltömörítés (MP3 tömörítés modellje)
 - **delta_sigma**: delta-szigma ADC szimulációja
 - **emd.m**: Empirical Mode Decomposition
 - **fft.c**: gyors Fourier-transzformáció nonrekurzív implementációja C nyelven + Blackman-ablak
