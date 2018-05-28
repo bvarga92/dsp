@@ -63,12 +63,12 @@ for ii=1:length(t);
         r11=[S_id11*x_shr(1:N_S)' r11(1:end-1)];
         r21=[S_id21*x_shr(1:N_S)' r21(1:end-1)];
         DW_1(1,:)=DW_1(1,:)+r11*e(1,ii);
-        DW_1(2,:)=DW_1(2,:)+r12*e(1,ii);
+        DW_1(2,:)=DW_1(2,:)+r21*e(1,ii);
         %node2
         r22=[S_id22*x_shr(1:N_S)' r22(1:end-1)];
         r12=[S_id12*x_shr(1:N_S)' r12(1:end-1)];
-        DW_2(1,:)=DW_2(1,:)+r21*e(2,ii);
         DW_2(2,:)=DW_2(2,:)+r22*e(2,ii);
+        DW_2(1,:)=DW_2(1,:)+r12*e(2,ii);
     %kommunikacio
     %node1  -----DW_1(2,:)----->  node2
     %node1  <----DW_2(1,:)------  node2
