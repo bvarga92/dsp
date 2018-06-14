@@ -25,6 +25,7 @@
 - **filters.m**: IIR és FIR szűrőapproximációk összehasonlítása (Butterworth, Csebisev, inverz Csebisev, elliptikus, frekvenciamintavételezés, Remez-algoritmus)
 - **hilbert_fir.m**: burkológörbe előállítása FIR szűrőkkel végzett Hilbert-transzformációval
 - **ident_spline.m**: statikus nemlinearitás adaptív identifikációja (Catmull-Rom-spline illesztése LMS algoritmussal)
+- **ident_volterra2.m**: másodfokú statikus nemlinearitás identifikációja Volterra-sorral
 - **kalman.m**: megfigyelési zaj kiszűrése Kalman-szűrővel
 - **kalman_fusion.m**: szenzorfúzió Kalman-szűrővel
 - **kurtogram.m**: tranziens zavarjel detektálása kurtogrammal
