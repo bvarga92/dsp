@@ -6,6 +6,7 @@
 - **efm32_fir**: jelfeldolgozás EFM32GG-STK3700 fejlesztőkártyán (fixpontos FIR szűrő)
 - **efm32_iir**: jelfeldolgozás EFM32GG-STK3700 fejlesztőkártyán (elsőfokú IIR szűrő)
 - **ekg**: EKG jel feldolgozása, QRS komplexek detektálása Pan-Tompkins-algoritmussal
+- **filterapprox**: különböző approximációjú szűrők tervezése manuálisan
 - **gpu_fir_cuda**: FIR szűrés megvalósítása GPU-gyorsított konvolúcióval (CUDA)
 - **gpu_fir_opencl**: FIR szűrés megvalósítása GPU-gyorsított konvolúcióval (OpenCL)
 - **interp**: interpolációs módszerek összehasonlítása (lineáris, Lagrange, LS, Fourier, Hermite, spline, aluláteresztő szűrő)
@@ -16,7 +17,6 @@
 - **sharc_reverb**: visszacsatolt késleltetőhálózaton alapuló zengető effekt ADSP-21364 jelfeldolgozó processzorral ([videó](https://www.youtube.com/watch?v=-eSbS0YqtKs&list=PL9_VlVdB8s882QMHiqJlDpJeKWxwP5CIG))
 - **stm32f746_scope**: audio bemenet és a spektrum megjelenítése az STM32F746-Discovery kártyán ([videó](https://www.youtube.com/watch?v=P65fDKEUeow&list=PL9_VlVdB8s882QMHiqJlDpJeKWxwP5CIG))
 - **trigger**: tranziens jel detektálása nagyon kis jel/zaj viszony mellett (Simulink modell)
-- **butterworth.m**: IIR sávszűrő manuális tervezése Butterworth-approximációval
 - **dct_compression.m**: diszkrét koszinusz transzformáción alapuló jeltömörítés (MP3 tömörítés modellje)
 - **delta_sigma**: delta-szigma ADC szimulációja
 - **emd.m**: Empirical Mode Decomposition
@@ -34,6 +34,5 @@
 - **ola.m**: hosszú jel FIR szűrése a frekvenciatartományban Overlap & Add algoritmussal
 - **peaks_ampd.m**: lokális szélsőértékek keresése Automatic Multiscale-Based Peak Detection algoritmussal
 - **peaks_simple.m**: lokális szélsőértékek keresése
-- **remezfir.m**: a Remez-módszer manuális implementációja aluláteresző FIR szűrő tervezésére (Parks-McClellan-algoritmus)
 - **spectral_kurtosis.m**: spektrális kurtózis számítása és alkalmazása jelkomponensek detektálására
 - **wavelet_processing.m**: wavelet alapú feature extraction

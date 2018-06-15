@@ -61,8 +61,8 @@ plot([w4 w4],[limits(3) limits(4)],'k--');
 plot([limits(1) limits(2)],[stopbandMinAtten stopbandMinAtten],'k--');
 hold off;
 axis(limits);
-xlabel('w [rad/s]');
-ylabel('|H| [dB]');
+xlabel('\omega [rad/s]');
+ylabel('|H(\omega)| [dB]');
 title('Az elkeszult szuro atvitele');
 [N,D]=numden(simplify(Hs));
 sys_cont=minreal(tf(sym2poly(N),sym2poly(D)))
