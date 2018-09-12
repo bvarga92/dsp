@@ -26,7 +26,7 @@ plot(tq,y_dec,'r');
 hold off;
 xlim([t(1) t(end)]);
 xlabel('t');
-legend('Bemeneti jel','\Delta\Sigma moduator kimenete','Kimeneti jel');
+legend('\Delta\Sigma modulator kimenete','Bemeneti jel','Kimeneti jel');
 figure(2);
 plot((0:N-1)*fs/N,abs(fft(x(t)-y))/N);
 hold on;
