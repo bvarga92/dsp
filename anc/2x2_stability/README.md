@@ -1,0 +1,13 @@
+- **Egycsatornás eset:**
+  - Az eredeti cikk [ITT](http://diec.unizar.es/~lvicente/personal/investigacion/Eusipco02-650.pdf) van, [EZ](http://diec.unizar.es/~lvicente/personal/investigacion/TSP06.pdf) is érdekes
+  - Késleltetett adaptáció és jelkésleltetés összehasonlítása: [delayed_update_vs_delayed_path.m](https://github.com/bvarga92/dsp/blob/main/anc/2x2_stability/delayed_update_vs_delayed_path.m)
+  - Pólusok viselkedése K függvényében, rögzített &omega;<sub>0</sub> és &Delta; mellett: [rootlocus.m](https://github.com/bvarga92/dsp/blob/main/anc/2x2_stability/rootlocus.m)
+  - K<sub>max</sub> függése &omega;<sub>0</sub>-tól, rögzített &Delta; mellett: [kmax.m](https://github.com/bvarga92/dsp/blob/main/anc/2x2_stability/kmax.m)
+  - A zajcsökkentés szimulációja: [simulate.m](https://github.com/bvarga92/dsp/blob/main/anc/2x2_stability/simulate.m)
+- **2x2-es eset:**
+  - Levezetés: [matek.pdf](https://github.com/bvarga92/dsp/blob/main/anc/2x2_stability/matek.pdf) és [matek.docx](https://github.com/bvarga92/dsp/blob/main/anc/2x2_stability/matek.docx)
+  - Pólusok viselkedése K függvényében, rögzített &omega;<sub>0</sub> és &Delta;<sub>ij</sub>-k mellett: [rootlocus_2x2.m](https://github.com/bvarga92/dsp/blob/main/anc/2x2_stability/rootlocus_2x2.m)
+  - K<sub>max</sub> függése &omega;<sub>0</sub>-tól, rögzített &Delta;<sub>ij</sub>-k mellett: [kmax_2x2.m](kmax_2x2.m) és a generált [ábrák](https://github.com/bvarga92/dsp/tree/main/anc/2x2_stability/abrak)
+  - A K<sub>max</sub>-ra kiadódó polinom gyökei: [kmax_theoretical_2x2.m](https://github.com/bvarga92/dsp/blob/main/anc/2x2_stability/kmax_theoretical_2x2.m)
+  - A zajcsökkentés szimulációja: [simulate_2x2.m](https://github.com/bvarga92/dsp/blob/main/anc/2x2_stability/simulate_2x2.m)
+  

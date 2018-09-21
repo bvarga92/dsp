@@ -1,5 +1,6 @@
 # Aktív zajcsökkentéssel kapcsolatos anyagok
 
+- **2x2_stability**: a kétcsatornás aktív zajcsökkentés matematikai analízise szinuszos referenciajelre
 - **stm32f746_fxlms**: egycsatornás aktív zajcsökkentés STM32F746-Discovery kártyán ([videó](https://www.youtube.com/watch?v=ypqI12VuxRw&list=PL9_VlVdB8s882QMHiqJlDpJeKWxwP5CIG))
 - **anc1_lms**: rendszeridentifikáció Least Mean Squares (LMS) algoritmussal
 - **anc2_fxlms**: aktív zajcsökkentés egyetlen pontban Filtered-x LMS (FxLMS) algoritmussal
