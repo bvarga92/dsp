@@ -24,7 +24,7 @@
 - **fft_windowing.m** és **fft_windowing.ipynb**: szimulációk a nem koherens mintavételezés és az ablakozás hatásáról
 - **filters.m**: IIR és FIR szűrőapproximációk összehasonlítása (Butterworth, Csebisev, inverz Csebisev, elliptikus, frekvenciamintavételezés, Remez-algoritmus)
 - **hilbert_fir.m**: burkológörbe előállítása FIR szűrőkkel végzett Hilbert-transzformációval
-- **ident_spline.m**: statikus nemlinearitás adaptív identifikációja (Catmull-Rom-spline illesztése LMS algoritmussal)
+- **ident_spline.m**: statikus nemlinearitás adaptív identifikációja (Catmull–Rom-spline illesztése LMS algoritmussal)
 - **ident_volterra.m**: statikus nemlinearitás identifikációja Volterra-sorral
 - **ident_volterra2.m**: másodfokú statikus nemlinearitás identifikációja Volterra-sorral, összevetés a lineáris modellel
 - **kalman.m**: megfigyelési zaj kiszűrése Kalman-szűrővel
