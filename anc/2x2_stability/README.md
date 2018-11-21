@@ -10,4 +10,4 @@
   - K<sub>max</sub> függése &omega;<sub>0</sub>-tól, rögzített &Delta;<sub>ij</sub>-k mellett: [kmax_2x2.m](kmax_2x2.m) és a generált [ábrák](https://github.com/bvarga92/dsp/tree/main/anc/2x2_stability/abrak)
   - A K<sub>max</sub>-ra kiadódó polinom gyökei: [kmax_theoretical_2x2.m](https://github.com/bvarga92/dsp/blob/main/anc/2x2_stability/kmax_theoretical_2x2.m)
   - A zajcsökkentés szimulációja: [simulate_2x2.m](https://github.com/bvarga92/dsp/blob/main/anc/2x2_stability/simulate_2x2.m)
-  
+  - Sávszélességkiosztás optimalizálása: [bwopt_2x2.m](https://github.com/bvarga92/dsp/blob/main/anc/2x2_stability/bwopt_2x2.m)
