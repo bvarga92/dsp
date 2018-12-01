@@ -115,10 +115,18 @@ for ii=1:N
     W2=W2+2*mu*(e1(ii)*r21+e2(ii)*r22);
 end
 
+settling=[find(abs(e1)>C*0.1,1,'last'), find(abs(e2)>C*0.1,1,'last')]
+
 figure(3);
 subplot(211);
 plot(e1);
-ylabel('e_1[n]');
+ylabel('e_1');
+hold on;
+plot([settling(1), settling(1)],ylim,'r');
+hold off;
 subplot(212);
 plot(e2);
-ylabel('e_2[n]');
+ylabel('e_2');
+hold on;
+plot([settling(2), settling(2)],ylim,'r');
+hold off;
