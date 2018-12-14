@@ -15,7 +15,7 @@ Delta_phy=round(fs*D/c) % a fizikai elrendezesbol adodo kesleltetesek
 A=1./D; % a fizikai elrendezesbol adodo erositesek
 
 %% parameterter generalasa
-dim=6;
+dim=10;
 % a=round(fs./(BW/B*linspace(0.1, 0.9, dim)));
 a=round(fs./(BW/B*logspace(log10(0.1), log10(0.9), dim)));
 [Delta_comm_1, Delta_comm_2]=meshgrid(a, a);
@@ -27,7 +27,7 @@ surf(Delta_comm_1,Delta_comm_2,Delta_comm_3);
 xlabel('\Delta_{comm1}');
 ylabel('\Delta_{comm2}');
 zlabel('\Delta_{comm3}');
-max(max(fs./Delta_comm_1+fs./Delta_comm_2+fs./Delta_comm_3-BW/B)) % nagyjabol nullanak kell lennie
+drawnow;
 
 %% szimulacio
 doPlots=false; % abrazoljunk-e a szimulacio kozben?
@@ -51,8 +51,7 @@ for di=1:dim
         fprintf('%d/%d (%.0f s).\n',(di-1)*dim+dj,dim^2,toc);
         sendPeriod=[Delta_comm_1(di,dj) Delta_comm_2(di,dj) Delta_comm_3(di,dj)]; % ennyi mintankent kuldjuk at az egyutthatokat, es frissitjuk az adaptiv szuroket
         if any(isnan(sendPeriod))
-            settling{di,dj}=[];
-            continue;
+            settling{di,dj}=[NaN NaN NaN];
         end
         for spkr=1:3
             for mic=1:3
@@ -143,7 +142,11 @@ for di=1:dim
                 end
         end
         for ii=1:3
-            settling{di,dj}(ii)=find(abs(e(ii,:))>C*0.1,1,'last');
+            if any(abs(e(ii,:))>C*1000)
+                settling{di,dj}(ii)=Inf;
+            else
+                settling{di,dj}(ii)=find(abs(e(ii,:))>C*0.1,1,'last');
+            end
         end
         if doPlots
             figure(2);
@@ -153,7 +156,7 @@ for di=1:dim
                 xlabel('t [s]');
                 ylabel(sprintf('e_%d',ii));
                 hold on;
-                plot([settling{di,dj}(ii), settling{di,dj}(ii)],ylim,'r');
+                plot([1 1]*settling{di,dj}(ii)/fs,ylim,'r');
                 hold off;
                 drawnow;
             end
