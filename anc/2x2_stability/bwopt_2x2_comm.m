@@ -3,7 +3,7 @@ clc;
 
 %% parameterek
 fs=8e3; % mintaveteli frekvencia [Hz]
-c=340; % hangsebesseg [m/s]
+c=340;  % hangsebesseg [m/s]
 H=[0+0j  ;  0-1j]; % hangszorok helye [m]
 M=[1+0j  ;  1-5j]; % mikrofonok helye [m]
 B=200*4; % egy uzenet merete [byte]
@@ -90,21 +90,21 @@ S12=[zeros(1,Delta12) A12 zeros(1,N_S-Delta12-1)];
 S21=[zeros(1,Delta21) A21 zeros(1,N_S-Delta21-1)];
 S22=[zeros(1,Delta22) A22 zeros(1,N_S-Delta22-1)];
 
-x=C*sin(omega0*(0:N-1));    % zajforras (referencia)
-d1=filter(P1,1,x);          % zaj az 1. node-nal
-d2=filter(P2,1,x);          % zaj a  2. node-nal
+x=C*sin(omega0*(0:N-1));   % zajforras (referencia)
+d1=filter(P1,1,x);         % zaj az 1. node-nal
+d2=filter(P2,1,x);         % zaj a  2. node-nal
 x_shr=zeros(1,max(L,N_S)); % buffer a referenciajelnek
-y_shr=zeros(2,N_S);      % buffer a kimeneti jeleknek
+y_shr=zeros(2,N_S);        % buffer a kimeneti jeleknek
 r11=zeros(1,L);            % x megszurve S11-gyel
 r12=zeros(1,L);            % x megszurve S12-vel
 r21=zeros(1,L);            % x megszurve S21-gyel
 r22=zeros(1,L);            % x megszurve S22-vel
-e=zeros(2,N);        % hibajelek (a mikrofonok altal hallott zaj)
+e=zeros(2,N);              % hibajelek (a mikrofonok altal hallott zaj)
 W=zeros(2,L);              % adaptiv szurok
 DW=zeros(2,L);             % update-ek
 DW_1=zeros(2,L);           % node1 altal (a sajat hibajele alapjan) elokeszitett update
 DW_2=zeros(2,L);           % node2 altal (a sajat hibajele alapjan) elokeszitett update
-updateCntr=zeros(1,2);       % ebben szamoljuk az update-ig
+updateCntr=zeros(1,2);     % ebben szamoljuk az update ota eltelt idot
 
 for ii=1:N;
     % a referenciajelet mindket node megkapja
