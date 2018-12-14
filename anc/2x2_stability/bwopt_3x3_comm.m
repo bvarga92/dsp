@@ -102,6 +102,7 @@ for ii=1:N;
         DW_3(3,:)=          r{3,3}*e(3,ii); % node3 -> node3 update
         W(3,:)=W(3,:)+DW_3(3,:);            % sajat update vegrehajtasa
     % kommunikacio: node1  ----- DW_1(2,:), DW_1(3,:) ----->  node2, node3
+        sendCntr=sendCntr+1;
         if sendCntr(1)>=sendPeriod(1)
             % node2: megkapja node1-tol DW_1(2,:)-t
             W(2,:)=W(2,:)+mu*DW_1(2,:);
@@ -109,10 +110,9 @@ for ii=1:N;
             W(3,:)=W(3,:)+mu*DW_1(3,:);
             % valtozok nullazasa
             DW_1=zeros(3,L);
-            sendCntr(1)=0;            
+            sendCntr(1)=0;
         end
     % kommunikacio: node2  ----- DW_2(1,:), DW_2(3,:) ----->  node1, node3
-        sendCntr=sendCntr+1;
         if sendCntr(2)>=sendPeriod(2)
             % node1: megkapja node2-tol DW_2(1,:)-t
             W(1,:)=W(1,:)+mu*DW_2(1,:);
