@@ -15,7 +15,7 @@ Delta_phy=round(fs*D/c) % a fizikai elrendezesbol adodo kesleltetesek
 A=1./D; % a fizikai elrendezesbol adodo erositesek
 
 %% parameterter generalasa
-dim=10;
+dim=30;
 % a=round(fs./(BW/B*linspace(0.1, 0.9, dim)));
 a=round(fs./(BW/B*logspace(log10(0.1), log10(0.9), dim)));
 [Delta_comm_1, Delta_comm_2]=meshgrid(a, a);
@@ -52,6 +52,7 @@ for di=1:dim
         sendPeriod=[Delta_comm_1(di,dj) Delta_comm_2(di,dj) Delta_comm_3(di,dj)]; % ennyi mintankent kuldjuk at az egyutthatokat, es frissitjuk az adaptiv szuroket
         if any(isnan(sendPeriod))
             settling{di,dj}=[NaN NaN NaN];
+            continue;
         end
         for spkr=1:3
             for mic=1:3
@@ -164,7 +165,8 @@ for di=1:dim
     end
 end
 
-%% eredmeny abrazolasa
+%% eredmeny mentese es abrazolasa
+save('settling.mat','settling');
 figure(3);
 surf(Delta_comm_1, Delta_comm_2, cellfun(@max,settling)/fs);
 xlabel('\Delta_{comm1}');
