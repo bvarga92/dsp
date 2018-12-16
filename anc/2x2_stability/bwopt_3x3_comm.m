@@ -4,8 +4,8 @@ clc;
 %% parameterek
 fs=8e3; % mintaveteli frekvencia [Hz]
 c=340;  % hangsebesseg [m/s]
-H=[0+0j  ;  0-1j ; 0-2j]; % hangszorok helye [m]
-M=[1+0j  ;  1-1j ; 1-5j]; % mikrofonok helye [m]
+H=[0+0j ; 0-1j   ; 0-2j]/5; % hangszorok helye [m]
+M=[1+0j ; 0.5-1j ; 1-4j]/5; % mikrofonok helye [m]
 B=200*4; % egy uzenet merete [byte]
 BW=20e4; % savszelessegkorlat [byte/s]  -->  fs/Delta_comm_1 + fs/Delta_comm_2 + fs/Delta_comm_3 = BW/B
 
@@ -15,7 +15,7 @@ Delta_phy=round(fs*D/c) % a fizikai elrendezesbol adodo kesleltetesek
 A=1./D; % a fizikai elrendezesbol adodo erositesek
 
 %% parameterter generalasa
-dim=30;
+dim=20;
 % a=round(fs./(BW/B*linspace(0.1, 0.9, dim)));
 a=round(fs./(BW/B*logspace(log10(0.1), log10(0.9), dim)));
 [Delta_comm_1, Delta_comm_2]=meshgrid(a, a);
@@ -34,11 +34,11 @@ doPlots=false; % abrazoljunk-e a szimulacio kozben?
 P1=1;
 P2=1;
 P3=1;
-N=15*fs; % szimulacio hossza
-f0=200;  % referenciajel frekvenciaja [Hz]
-C=1;     % referenciajel amplitudoja
-L=100;   % adaptiv szurok hossza
-mu=1e-4; % batorsagi tenyezo
+N=0.8*fs; % szimulacio hossza
+f0=200;   % referenciajel frekvenciaja [Hz]
+C=1;      % referenciajel amplitudoja
+L=100;    % adaptiv szurok hossza
+mu=1e-5;  % batorsagi tenyezo
 x=C*sin(2*pi*(0:N-1)*f0/fs); % zajforras (referencia)
 d1=filter(P1,1,x);           % zaj az 1. node-nal
 d2=filter(P2,1,x);           % zaj a  2. node-nal
