@@ -7,7 +7,7 @@ c=340;  % hangsebesseg [m/s]
 H=[0+0j  ;  0-1j]/2; % hangszorok helye [m]
 M=[1+0j  ;  1-5j]/2; % mikrofonok helye [m]
 B=200*4; % egy uzenet merete [byte]
-BW=20e4; % savszelessegkorlat [byte/s]  -->  fs/Delta_comm_1 + fs/Delta_comm_2 + fs/Delta_comm_3 = BW/B
+BW=4e4; % savszelessegkorlat [byte/s]  -->  fs/Delta_comm_1 + fs/Delta_comm_2 + fs/Delta_comm_3 = BW/B
 
 %% fizikai parameterek szamitasa
 D=abs([H H]-[M.' ; M.']); % D_ij: H_i es M_j kozti tavolsag
@@ -15,7 +15,7 @@ Delta_phy=round(fs*D/c) % a fizikai elrendezesbol adodo kesleltetesek
 A=1./D; % a fizikai elrendezesbol adodo erositesek
 
 %% parameterter generalasa
-dim=100;
+dim=20;
 a=linspace(0.1,0.9,dim); % savszelessegelosztasi arany
 Delta_comm_1=round(fs./(BW/B*a));
 Delta_comm_2=round(fs./(BW/B*(1-a)));
@@ -32,11 +32,11 @@ drawnow;
 doPlots=true; % abrazoljunk-e a szimulacio kozben?
 P1=1;
 P2=1;
-N=2*fs;   % szimulacio hossza
+N=4*fs;   % szimulacio hossza
 f0=200;   % referenciajel frekvenciaja [Hz]
 C=1;      % referenciajel amplitudoja
 L=100;    % adaptiv szurok hossza
-mu=2e-5;  % batorsagi tenyezo
+mu=1e-5;  % batorsagi tenyezo
 x=C*sin(2*pi*(0:N-1)*f0/fs); % zajforras (referencia)
 d1=filter(P1,1,x);           % zaj az 1. node-nal
 d2=filter(P2,1,x);           % zaj a  2. node-nal
@@ -132,9 +132,9 @@ end
 %% eredmeny mentese es abrazolasa
 save('settling.mat','settling');
 figure(3);
-plot(a, max(settling,[],2)/fs, a, mean(settling,2)/fs);
+plot(a, settling/fs);
 grid on;
 xlabel('savszelessegkiosztas');
 ylabel('T_s');
-legend('max','atlag','Location','Best');
+legend('node 1','node 2','Location','Best');
 xlim([0 1]);
