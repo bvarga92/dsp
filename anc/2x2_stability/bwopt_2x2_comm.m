@@ -4,8 +4,8 @@ clc;
 %% parameterek
 fs=8e3; % mintaveteli frekvencia [Hz]
 c=340;  % hangsebesseg [m/s]
-H=[0+0j  ;  0-1j]/2; % hangszorok helye [m]
-M=[1+0j  ;  1-5j]/2; % mikrofonok helye [m]
+H=[0+0j  ;  0-1j]/3; % hangszorok helye [m]
+M=[1+0j  ;  1-5j]/3; % mikrofonok helye [m]
 B=200*4; % egy uzenet merete [byte]
 BW=4e4; % savszelessegkorlat [byte/s]  -->  fs/Delta_comm_1 + fs/Delta_comm_2 + fs/Delta_comm_3 = BW/B
 
@@ -32,22 +32,25 @@ drawnow;
 doPlots=true; % abrazoljunk-e a szimulacio kozben?
 P1=1;
 P2=1;
-N=4*fs;   % szimulacio hossza
+N=3*fs;   % szimulacio hossza
 f0=200;   % referenciajel frekvenciaja [Hz]
 C=1;      % referenciajel amplitudoja
 L=100;    % adaptiv szurok hossza
 mu=1e-5;  % batorsagi tenyezo
 x=C*sin(2*pi*(0:N-1)*f0/fs); % zajforras (referencia)
+xRMS=sqrt(mean(x.^2));
 d1=filter(P1,1,x);           % zaj az 1. node-nal
 d2=filter(P2,1,x);           % zaj a  2. node-nal
 N_S=max(Delta_phy(:))+1;
 settling=zeros(dim,2);
+settlingRMS=zeros(dim,2);
 tic;
 for di=1:dim
     fprintf('%d/%d (%.0f s).\n',di,dim,toc);
     sendPeriod=[Delta_comm_1(di) Delta_comm_2(di)]; % ennyi mintankent kuldjuk at az egyutthatokat, es frissitjuk az adaptiv szuroket
     if any(isnan(sendPeriod))
         settling(di,:)=[NaN NaN];
+        settlingRMS(di,:)=[NaN NaN];
         continue;
     end
     for spkr=1:2
@@ -59,6 +62,7 @@ for di=1:dim
     x_shr=zeros(1,max(L,N_S)); % buffer a referenciajelnek
     y_shr=zeros(2,N_S);        % buffer a kimeneti jeleknek
     e=zeros(2,N);              % hibajelek (a mikrofonok altal hallott zaj)
+    eRMS=zeros(2,N);           % a hibajelek RMS-e
     W=zeros(2,L);              % adaptiv szurok
     DW_1=zeros(2,L);           % node1 altal (a sajat hibajele alapjan) elokeszitett update
     DW_2=zeros(2,L);           % node2 altal (a sajat hibajele alapjan) elokeszitett update
@@ -107,11 +111,15 @@ for di=1:dim
                 sendCntr(2)=0;
             end
     end
+    Np=5*round(fs/f0);
     for ii=1:2
+        eRMS(ii,:)=sqrt(filter(ones(1,Np)/Np,1,e(ii,:).^2));
         if any(abs(e(ii,:))>C*1000)
             settling(di,ii)=Inf;
+            settlingRMS(di,ii)=Inf;
         else
             settling(di,ii)=find(abs(e(ii,:))>C*0.1,1,'last');
+            settlingRMS(di,ii)=find(abs(eRMS(ii,:))>xRMS*0.1,1,'last');
         end
     end
     if doPlots
@@ -122,7 +130,8 @@ for di=1:dim
             xlabel('t [s]');
             ylabel(sprintf('e_%d',ii));
             hold on;
-            plot([1 1]*settling(di,ii)/fs,ylim,'r');
+            plot((0:N-1)/fs,eRMS(ii,:),'m');
+            plot([1 1]*settlingRMS(di,ii)/fs,ylim,'r');
             hold off;
             drawnow;
         end

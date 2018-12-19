@@ -5,9 +5,9 @@ clc;
 fs=8e3; % mintaveteli frekvencia [Hz]
 c=340;  % hangsebesseg [m/s]
 H=[0+0j ; 0-1j   ; 0-2j]/5; % hangszorok helye [m]
-M=[1+0j ; 0.5-1j ; 1-4j]/5; % mikrofonok helye [m]
+M=[1+0j ; 0.5-1j ; 1-8j]/5; % mikrofonok helye [m]
 B=200*4; % egy uzenet merete [byte]
-BW=20e4; % savszelessegkorlat [byte/s]  -->  fs/Delta_comm_1 + fs/Delta_comm_2 + fs/Delta_comm_3 = BW/B
+BW=5e4; % savszelessegkorlat [byte/s]  -->  fs/Delta_comm_1 + fs/Delta_comm_2 + fs/Delta_comm_3 = BW/B
 
 %% fizikai parameterek szamitasa
 D=abs([H H H]-[M.' ; M.' ; M.']); % D_ij: H_i es M_j kozti tavolsag
@@ -30,7 +30,7 @@ zlabel('\Delta_{comm3}');
 drawnow;
 
 %% szimulacio
-doPlots=false; % abrazoljunk-e a szimulacio kozben?
+doPlots=true; % abrazoljunk-e a szimulacio kozben?
 P1=1;
 P2=1;
 P3=1;
@@ -40,11 +40,13 @@ C=1;      % referenciajel amplitudoja
 L=100;    % adaptiv szurok hossza
 mu=1e-5;  % batorsagi tenyezo
 x=C*sin(2*pi*(0:N-1)*f0/fs); % zajforras (referencia)
+xRMS=sqrt(mean(x.^2));
 d1=filter(P1,1,x);           % zaj az 1. node-nal
 d2=filter(P2,1,x);           % zaj a  2. node-nal
 d3=filter(P3,1,x);           % zaj a  3. node-nal
 N_S=max(Delta_phy(:))+1;
 settling=cell(dim,dim);
+settlingRMS=cell(dim,dim);
 tic;
 for di=1:dim
     for dj=1:dim
@@ -52,6 +54,7 @@ for di=1:dim
         sendPeriod=[Delta_comm_1(di,dj) Delta_comm_2(di,dj) Delta_comm_3(di,dj)]; % ennyi mintankent kuldjuk at az egyutthatokat, es frissitjuk az adaptiv szuroket
         if any(isnan(sendPeriod))
             settling{di,dj}=[NaN NaN NaN];
+            settlingRMS{di,dj}=[NaN NaN NaN];
             continue;
         end
         for spkr=1:3
@@ -63,6 +66,7 @@ for di=1:dim
         x_shr=zeros(1,max(L,N_S)); % buffer a referenciajelnek
         y_shr=zeros(3,N_S);        % buffer a kimeneti jeleknek
         e=zeros(3,N);              % hibajelek (a mikrofonok altal hallott zaj)
+        eRMS=zeros(3,N);           % a hibajelek RMS-e
         W=zeros(3,L);              % adaptiv szurok
         DW_1=zeros(3,L);           % node1 altal (a sajat hibajele alapjan) elokeszitett update
         DW_2=zeros(3,L);           % node2 altal (a sajat hibajele alapjan) elokeszitett update
@@ -143,10 +147,18 @@ for di=1:dim
                 end
         end
         for ii=1:3
+            Np=5*round(fs/f0);
+            eRMS(ii,:)=sqrt(filter(ones(1,Np)/Np,1,e(ii,:).^2));
             if any(abs(e(ii,:))>C*1000)
                 settling{di,dj}(ii)=Inf;
+                settlingRMS{di,dj}(ii)=Inf;
             else
-                settling{di,dj}(ii)=find(abs(e(ii,:))>C*0.1,1,'last');
+                s=find(abs(e(ii,:))>C*0.1,1,'last');
+                if isempty(s), s=NaN; end
+                settling{di,dj}(ii)=s;
+                s=find(abs(eRMS(ii,:))>xRMS*0.1,1,'last');
+                if isempty(s), s=NaN; end
+                settlingRMS{di,dj}(ii)=s;
             end
         end
         if doPlots
@@ -157,7 +169,8 @@ for di=1:dim
                 xlabel('t [s]');
                 ylabel(sprintf('e_%d',ii));
                 hold on;
-                plot([1 1]*settling{di,dj}(ii)/fs,ylim,'r');
+                plot((0:N-1)/fs,eRMS(ii,:),'m');
+                plot([1 1]*settlingRMS{di,dj}(ii)/fs,ylim,'r');
                 hold off;
                 drawnow;
             end
