@@ -35,5 +35,6 @@
 - **ola.m**: hosszú jel FIR szűrése a frekvenciatartományban Overlap & Add algoritmussal
 - **peaks_ampd.m**: lokális szélsőértékek keresése Automatic Multiscale-Based Peak Detection algoritmussal
 - **peaks_simple.m**: lokális szélsőértékek keresése
+- **rboFilter.m**: rezonátoros állapotmegfigyelővel megvalósított rekurzív lyukszűrő
 - **spectral_kurtosis.m**: spektrális kurtózis számítása és alkalmazása jelkomponensek detektálására
 - **wavelet_processing.m**: wavelet alapú feature extraction
