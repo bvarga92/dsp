@@ -6,6 +6,7 @@
   - A zajcsökkentés szimulációja: [simulate.m](https://github.com/bvarga92/dsp/blob/main/anc/2x2_stability/simulate.m)
 - **2x2-es eset:**
   - Levezetés: [matek.pdf](https://github.com/bvarga92/dsp/blob/main/anc/2x2_stability/matek.pdf) és [matek.docx](https://github.com/bvarga92/dsp/blob/main/anc/2x2_stability/matek.docx)
+  - Konferenciacikk: [article.pdf](https://github.com/bvarga92/dsp/blob/main/anc/2x2_stability/article.pdf)
   - Pólusok viselkedése K függvényében, rögzített &omega;<sub>0</sub> és &Delta;<sub>ij</sub>-k mellett: [rootlocus_2x2.m](https://github.com/bvarga92/dsp/blob/main/anc/2x2_stability/rootlocus_2x2.m)
   - K<sub>max</sub> függése &omega;<sub>0</sub>-tól, rögzített &Delta;<sub>ij</sub>-k mellett: [kmax_2x2.m](kmax_2x2.m) és a generált [ábrák](https://github.com/bvarga92/dsp/tree/main/anc/2x2_stability/abrak)
   - A K<sub>max</sub>-ra kiadódó polinom gyökei: [kmax_theoretical_2x2.m](https://github.com/bvarga92/dsp/blob/main/anc/2x2_stability/kmax_theoretical_2x2.m)
