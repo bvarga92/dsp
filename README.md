@@ -32,6 +32,7 @@
 - **kurtogram.m**: tranziens zavarjel detektálása kurtogrammal
 - **meda_momeda.m**: periodikus zavarjel detektálása Minimum Entropy Deconvolution algoritmussal
 - **mfcc.m**: Mel-Frequency Cepstrum előállítása
+- **noise_variance_estimators.m**: varianciabecslők különböző zajtípusokra
 - **ola.m**: hosszú jel FIR szűrése a frekvenciatartományban Overlap & Add algoritmussal
 - **peaks_ampd.m**: lokális szélsőértékek keresése Automatic Multiscale-Based Peak Detection algoritmussal
 - **peaks_simple.m**: lokális szélsőértékek keresése
