@@ -12,5 +12,5 @@
   - A K<sub>max</sub>-ra kiadódó polinom gyökei: [kmax_theoretical_2x2.m](https://github.com/bvarga92/dsp/blob/main/anc/2x2_stability/kmax_theoretical_2x2.m)
   - A zajcsökkentés szimulációja: [simulate_2x2.m](https://github.com/bvarga92/dsp/blob/main/anc/2x2_stability/simulate_2x2.m)
   - Sávszélességkiosztás optimalizálása: [bwopt_2x2.m](https://github.com/bvarga92/dsp/blob/main/anc/2x2_stability/bwopt_2x2.m), a kommunikáció szimulációjával: [bwopt_2x2_comm.m](https://github.com/bvarga92/dsp/blob/main/anc/2x2_stability/bwopt_2x2_comm.m)
-- **3x3-as eset:**
-  - Sávszélességkiosztás optimalizálása: [bwopt_3x3_comm.m](https://github.com/bvarga92/dsp/blob/main/anc/2x2_stability/bwopt_3x3_comm.m)
+- **Egyéb:**
+  - Néhány valóságos identifikált átvitel: [S.mat](https://github.com/bvarga92/dsp/blob/main/anc/2x2_stability/S.mat)
