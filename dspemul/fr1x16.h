@@ -13,7 +13,7 @@ fract16 sub_fr1x16(fract16 f1, fract16 f2);
 fract16 mult_fr1x16(fract16 f1, fract16 f2);
 fract16 abs_fr1x16(fract16 f1);
 
-/* sin(2pi*x), a bemenet nem lehet negativ! */
+/* sin(2pi*x), x nem lehet negativ! */
 fract16 sin2pi_fr16(fract16 x);
 
 #endif
