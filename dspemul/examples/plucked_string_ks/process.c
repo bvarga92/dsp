@@ -14,7 +14,7 @@ void init(){}
 void process(){
     static int idx = 0;
     static fract16 dl = 0;
-    outLeft = outRight = mult_fr1x16(16384, add_fr1x16(buf[idx], dl));
+    outLeft = outRight = add_fr1x16(mult_fr1x16(16384, buf[idx]), mult_fr1x16(16384, dl));
     dl = buf[idx];
     buf[idx] = outRight;
     idx = (idx + 1) % L;
