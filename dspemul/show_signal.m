@@ -1,5 +1,6 @@
 filename = 'output.dat';
 play_sound = true;
+save_sound = false;
 fs = 48000;
 
 fid = fopen(filename, 'rt');
@@ -18,4 +19,7 @@ title('Jobb csatorna');
 
 if play_sound
     soundsc(signal, fs);
+end
+if save_sound
+    audiowrite('output.wav', signal, fs);
 end

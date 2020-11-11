@@ -1,15 +1,19 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import simpleaudio as sa
+from scipy.io.wavfile import write
 
 filename = 'output.dat'
 play_sound = True
+save_sound = False
 fs = 48000
 
 with open(filename, 'rt') as file:
     signal = np.array([[int(value) for value in line.strip().split(' ')] for line in file], dtype=np.int16, order='C')
 if play_sound:
     play_obj = sa.play_buffer(signal, 2, 2, int(fs))
+if save_sound:
+    write('output.wav', int(fs), signal)
 t = np.arange(signal.shape[0]) / fs
 plt.figure()
 plt.subplot(211)
