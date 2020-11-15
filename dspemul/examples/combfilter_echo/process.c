@@ -13,7 +13,7 @@ void init(){}
 
 /* univerzalis fesuszuro kulonbozo effektekhez (pl. echo, slapback) */
 void process(){
-    static unsigned idx = L - 1;
+    static unsigned idx = L - 1; //mindig a legregebbi mintara mutat
     fract16 in, out, temp;
     in = mult_fr1x16(16384, add_fr1x16(inLeft, inRight));
     temp = dl[idx];
