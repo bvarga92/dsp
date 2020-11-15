@@ -1,5 +1,6 @@
 import numpy as np
 import scipy.signal
+import scipy.io.wavfile
 import matplotlib.pyplot as plt
 
 def compose_signal(left, right):
@@ -25,6 +26,13 @@ elif select == 2:  # 100 Hz-es haromszogjel a bal csatornan, pl. PLL teszteleseh
 elif select == 3:  # sweep (chirp) jel a jobb csatornan, pl. szuro meresehez
     t = np.arange(0, 1, 1 / fs)
     signal = compose_signal(0 * t, scipy.signal.chirp(t, 5000, 1, 15000, 'linear'))
+
+elif select == 4:  # audio fajlbol, pl. zenei effekthez
+    fs_file, signal = scipy.io.wavfile.read('input.wav')
+    if fs_file != fs:
+        print('Figyelem, eltero mintaveteli fekvencia (%d Hz)!\n' % fs_file)
+    signal = np.interp(signal.astype(float), (np.iinfo(signal.dtype).min, np.iinfo(signal.dtype).max), (-1, 1))
+    signal = compose_signal(signal[:, 0], signal[:, 1])
 
 
 np.savetxt(filename, signal, fmt='%d')

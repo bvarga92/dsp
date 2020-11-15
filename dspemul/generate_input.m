@@ -12,14 +12,21 @@ switch select
     case 1  % 440 Hz-es szinusz- es koszinuszjel
         t = 0:1/fs:1;
         signal = compose_signal(sin(2*pi*440*t), cos(2*pi*440*t));
-        
+
     case 2  % 100 Hz-es haromszogjel a bal csatornan, pl. PLL tesztelesehez
         t = 0:1/fs:1;
         signal = compose_signal(sawtooth(2 * pi * 100 * t, 0.5), 0 * t);
-        
+
     case 3  % sweep (chirp) jel a jobb csatornan, pl. szuro meresehez
         t = 0:1/fs:1;
-        signal = compose_signal(0*t, chirp(t, 5000, 1, 15000, 'linear'));  
+        signal = compose_signal(0*t, chirp(t, 5000, 1, 15000, 'linear'));
+
+    case 4  % audio fajlbol, pl. zenei effekthez
+        [signal, fs_file] = audioread('input.wav', 'double');
+        if fs_file ~= fs
+            fprintf('Figyelem, eltero mintaveteli fekvencia (%d Hz)!\n', fs_file);
+        end
+        signal = compose_signal(signal(:, 1), signal(:, 2));
 end
 
 
