@@ -45,3 +45,8 @@ fract16 sin2pi_fr16(fract16 x){
     if(x < 0) return 0;
     return float_to_fr16(sin(2*M_PI*fr16_to_float(x)));    
 }
+
+fract16 cos2pi_fr16(fract16 x){
+    if(x < 0) return 0;
+    return float_to_fr16(cos(2*M_PI*fr16_to_float(x)));    
+}
