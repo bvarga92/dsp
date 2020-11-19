@@ -13,13 +13,13 @@ def compose_signal(left, right):
 
 filename = 'input.dat'
 fs = 48000
-select = 3
+select = 4
 
 if select == 1:  # 440 Hz-es szinusz- es koszinuszjel
     t = np.arange(0, 1, 1 / fs)
     signal = compose_signal(np.sin(2 * np.pi * 440 * t), np.cos(2 * np.pi * 440 * t))
 
-elif select == 2:  # 100 Hz-es haromszogjel a bal csatornan, pl. PLL tesztelesehez
+elif select == 2:  # 100 Hz-es haromszogjel a bal csatornan
     t = np.arange(0, 1, 1 / fs)
     signal = compose_signal(scipy.signal.sawtooth(2 * np.pi * 100 * t, 0.5), 0 * t)
 
@@ -27,7 +27,17 @@ elif select == 3:  # sweep (chirp) jel a jobb csatornan, pl. szuro meresehez
     t = np.arange(0, 1, 1 / fs)
     signal = compose_signal(0 * t, scipy.signal.chirp(t, 5000, 1, 15000, 'linear'))
 
-elif select == 4:  # audio fajlbol, pl. zenei effekthez
+elif select == 4:  # tuskekkel teli szinuszjel a jobb csatornan, pl. medianszuro tesztelesehez
+    t = np.arange(0, 0.5, 1 / fs)
+    x = 0.5 * np.sin(2 * np.pi * 100 * t)
+    pos = np.random.randint(0, len(x), round(len(x) * 0.01))
+    width = np.random.randint(1, 7, len(pos))
+    height = np.random.rand(len(pos)) - 0.5
+    for i in range(len(pos)):
+        x[pos[i]:pos[i]+width[i]] += height[i]
+    signal = compose_signal(0 * t, x)
+
+elif select == 5:  # audio fajlbol, pl. zenei effekthez
     fs_file, signal = scipy.io.wavfile.read('input.wav')
     if fs_file != fs:
         print('Figyelem, eltero mintaveteli fekvencia (%d Hz)!\n' % fs_file)
