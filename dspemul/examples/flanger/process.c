@@ -1,8 +1,8 @@
 #include "fr1x16.h"
 
-#define L    96 //maximalis kesleltetes
-#define W     1 //a kesleltetes modulalasanak korfrekvenciaja
-#define G 16384 //keveresi arany
+#define L    96 //maximalis kesleltetes (egesz)
+#define W     1 //a kesleltetes modulalasanak frekvenciaja (fract16)
+#define G 16384 //keveresi arany (fract16)
 
 extern fract16 inLeft, inRight, outLeft, outRight; //a be- es kimeno sztereo jelparok
 

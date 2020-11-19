@@ -1,9 +1,9 @@
 #include "fr1x16.h"
 
-#define L  9600  //kesleltetovonal hossza
-#define FF 0     //elorecsatolas
-#define FB 6554  //visszacsatolas
-#define BL 32767 //blend
+#define L  9600  //kesleltetovonal hossza (egesz)
+#define FF 0     //elorecsatolas (fract16)
+#define FB 6554  //visszacsatolas (fract16)
+#define BL 32767 //blend (fract16)
 
 extern fract16 inLeft, inRight, outLeft, outRight; //a be- es kimeno sztereo jelparok
 

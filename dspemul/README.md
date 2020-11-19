@@ -10,7 +10,7 @@ Tudnivalók:
 
 - A program fordításához használható a mellékelt Makefile, de nem kötelező, mindenki használja a kedvenc fejlesztőkörnyezetét. A Makefile Windowshoz készült, de egyszerűen módosítható Linuxra (main.exe helyett main, del helyett rm).
 
-- Az fr1x16.h fájlban látható, hogy a *fract16* változótípust kezelő függvények közül melyek használhatók a programban. Ezek többségének működése megegyezik a Blackfin C fordító dokumentációjában leírtaknak, az esetleges eltéréseket kommentben jeleztem (pl. az FFT függvény nem igényel előre feltöltött twiddle table-t).
+- Az fr1x16.h fájlban látható, hogy a *fract16* változótípust kezelő függvények közül melyek használhatók a programban. Ezek többségének működése megegyezik a Blackfin C fordító dokumentációjában leírtaknak, az esetleges eltéréseket kommentben jeleztem (pl. az FFT függvénynél egyszerűbb a paraméterezés).
 
 - Fixpontos literáloknál az *r16* suffix nem használható, helyette válasszuk a konverziós függvényt vagy az egész számként értelmezett értéket:
 
