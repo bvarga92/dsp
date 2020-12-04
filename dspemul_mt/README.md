@@ -24,8 +24,8 @@ Semaphore s;
 
 s.wait(); //blokkolva várakozik a jelzésre
 
-s.wait_for(ms); //ms milliszekundum ideig várakozik blokkolva, azután visszatér
-                //a visszatérési érték igaz, ha volt jelzés, és hamis, ha letelt az időkorlát
+s.wait_for_ms(t); //t milliszekundum ideig várakozik blokkolva, azután visszatér
+                  //a visszatérési érték igaz, ha volt jelzés, és hamis, ha letelt az időkorlát
 
 s.notify(); //jelzés
 ```
