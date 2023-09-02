@@ -99,7 +99,7 @@ inline double waveform(double phase)
     return 0.7241 * sin(phase) + 0.32 * sin(2 * phase) + 0.2281 * sin(3 * phase) + 0.0601 * sin(4 * phase);
 }
 
-/* Fills the signal vector (assumed empty) accorcing to the song parameters. */
+/* Fills the signal vector (assumed empty) according to the song parameters. */
 void generateSoundData(vector<uint8_t> &signal, const vector<pair<uint8_t, uint8_t>> &keys_durations, uint32_t bpm)
 {
     static const double PI = 3.14159265359;
